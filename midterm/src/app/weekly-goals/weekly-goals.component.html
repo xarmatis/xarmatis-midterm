@@ -2,7 +2,7 @@
     <header>
         <div class="top">
             <h1>Weekly Goals</h1>
-            <img src="../../assets/pencil.svg" alt="Pencil image" width="20" height="20">
+            <img src="../../assets/pencil.svg" alt="Pencil image" width="20" height="20" (click)="addGoal()" style="cursor: pointer;">
         </div>
         <p class="fall2020">9/24 - 9/30</p>
     </header>
@@ -10,7 +10,7 @@
     <section class="goals" id="goals">
         <div *ngFor="let goal of goals" class="goal">
             <div class="check" (click)="toggleGoalCompletion(goal)">
-                <img src="../../assets/checkbox.svg" alt="Check-box" width="21.04" height="21.06">
+                <img [src]="goal.completed ? 'assets/checked.svg' : 'assets/checkbox.svg'" alt="Check-box" width="21.04" height="21.06">
                 <h2 [ngClass]="{'completed':goal.completed}">{{ goal.title }}</h2>
             </div>
             <div class="goal-info">

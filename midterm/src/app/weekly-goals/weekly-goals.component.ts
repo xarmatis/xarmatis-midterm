@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { WeeklyGoalModalComponent } from '../weekly-goal-modal/weekly-goal-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 interface Goal {
   title: string;
@@ -11,7 +14,7 @@ interface Goal {
 @Component({
   selector: 'app-weekly-goals',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule,],
   templateUrl: './weekly-goals.component.html',
   styleUrl: './weekly-goals.component.scss'
 })
@@ -22,30 +25,25 @@ export class WeeklyGoalsComponent {
     { title: 'Technical interview prep', hash: '#interview-technical', progress: '' }
   ];
 
+  constructor(private dialog: MatDialog) {} // Inject MatDialog for modal handling
+
   toggleGoalCompletion(goal: Goal): void {
     goal.completed = !goal.completed; // Toggle the completed state
   }
 
   addGoal(): void {
-    // Prompt the user for goal details
-    const goalDescription = prompt("Enter a new quarter goal");
-    const hashTag = prompt("Enter a goal hashtag");
-    const progress = prompt("Enter goal completion status");
+    const dialogRef = this.dialog.open(WeeklyGoalModalComponent, {
+      width: '80%',
+      maxWidth:'600px',  // Optional, adjust based on your design
+      data: {goals: this.goals}
+    });
 
-    // Ensure that all fields are filled out
-    if (!goalDescription || !hashTag || !progress) {
-      alert("All fields are required!");
-      return;
-    }
-
-    // Create a new goal object
-    const newGoal: Goal = {
-      title: goalDescription,
-      hash: `#${hashTag}`,
-      progress: progress
-    };
-
-    // Add the new goal to the goals array
-    this.goals.push(newGoal);
+    // Handle the modal result when it is closed
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Add the new goal to the goals array when the modal is closed and has a result
+        this.goals.push(result);
+      }
+    });
   }
 }

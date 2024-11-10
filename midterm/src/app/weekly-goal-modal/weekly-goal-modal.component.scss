@@ -66,35 +66,35 @@
 
 
 
-/* Remove the border/box around the input fields */
+
 input[type="text"] {
     border: none;
     background: none;
-    font-family: 'Arial', sans-serif;  /* Ensure consistent font */
-    font-size: 16px;  /* Adjust font size as needed */
-    outline: none;  /* Remove outline when focused */
-    padding: 8px;  /* Add padding for better appearance */
+    font-family: 'Arial', sans-serif;  
+    font-size: 16px;  
+    outline: none;  
+    padding: 8px;  
 }
 
-/* Remove focus outline */
+
 input[type="text"]:focus {
     outline: none;
 }
 
-/* Placeholder styling */
+
 input[type="text"]::placeholder {
     font-style: italic;
-    color: #ccc;  /* Placeholder color */
+    color: #ccc;  
 }
 
-/* Consistent font for existing goal text and hashtags */
+
 .textline p {
-    font-family: 'Arial', sans-serif;  /* Match font */
+    font-family: 'Arial', sans-serif;  
     font-size: 16px;
-    color: #333;  /* Goal text color */
+    color: #333;  
 }
 .hashline p {
-    font-family: 'Arial', sans-serif;  /* Match font */
+    font-family: 'Arial', sans-serif;  
     font-size: 16px;
     color: rgb(255,185,135);  
 }

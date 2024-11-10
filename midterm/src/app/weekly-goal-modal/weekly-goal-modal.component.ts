@@ -32,7 +32,7 @@ export class WeeklyGoalModalComponent {
     }
   }
 
-  // Method to save the new goal and pass it back to the parent
+  
   saveGoal(): void {
     if (this.goalTitle && this.goalHash) {
       const newGoal = {
